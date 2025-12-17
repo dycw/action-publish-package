@@ -4,7 +4,7 @@
     current_version = "0.3.5"
 
     [[tool.bumpversion.files]]
-      filename = ".bumpversion.tml"
+      filename = ".bumpversion.toml"
       replace = "current_version = \"{new_version}\""
       search = "current_version = \"{current_version}\""
 
