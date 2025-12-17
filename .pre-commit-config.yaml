@@ -13,7 +13,7 @@ repos:
         files: ^script\.py$
         id: uv-lock
     repo: https://github.com/astral-sh/uv-pre-commit
-    rev: 0.9.17
+    rev: 0.9.18
   - hooks:
       - args:
           - --option
@@ -34,18 +34,13 @@ repos:
           - --pre-commit--uv
           - --pre-commit--uv--script=script.py
           - --pyright
-          - --pyright-include=script.py
+          - --pyright--include=script.py
           - --pytest
-          - --pytest-test-paths=tests
+          - --pytest--test-paths=tests
           - --ruff
         id: nitpick
     repo: https://github.com/dycw/pre-commit-hook-nitpick
-    rev: 0.2.10
-  - hooks:
-      - id: replace-sequence-str
-      - id: run-bump-my-version
-    repo: https://github.com/dycw/pre-commit-hooks
-    rev: 0.13.26
+    rev: 0.3.4
   - hooks:
       - id: check-executables-have-shebangs
       - id: check-merge-conflict
