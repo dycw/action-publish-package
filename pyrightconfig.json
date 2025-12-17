@@ -2,9 +2,9 @@
   "deprecateTypingAliases": true,
   "enableReachabilityAnalysis": false,
   "include": [
-    "script.py"
+    "src"
   ],
-  "pythonVersion": "3.14",
+  "pythonVersion": "3.13",
   "reportCallInDefaultInitializer": true,
   "reportImplicitOverride": true,
   "reportImplicitStringConcatenation": true,
