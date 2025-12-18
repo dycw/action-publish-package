@@ -10,11 +10,11 @@
     "rich>=14.2.0, <14.3",
     "typed-settings[attrs, click] >=25.3.0, <25.4",
   ]
-  description = "Tag the latest commit with the version read from `bump-my-version`"
+  description = "Build and publish Python packages"
   name = "dycw-uv-publish"
   readme = "README.md"
   requires-python = ">= 3.13"
-  version = "0.4.4"
+  version = "0.4.5"
 
   [project.scripts]
     uv-publish = "uv_publish.cli:_main"

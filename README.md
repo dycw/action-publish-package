@@ -1,3 +1,3 @@
 # `action-uv-publish`
 
-Build Python package and upload distribution
+Build and publish Python packages
