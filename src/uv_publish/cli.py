@@ -15,13 +15,17 @@ from uv_publish.settings import Settings
 @command(**CONTEXT_SETTINGS_HELP_OPTION_NAMES)
 @click_options(Settings, "app", show_envvars_in_help=True)
 def _main(settings: Settings, /) -> None:
+    basic_config(obj=LOGGER)
+    LOGGER.info(
+        """\
+Running version %s with settings:
+%s""",
+        __version__,
+        pretty_repr(settings),
+    )
     if settings.dry_run:
         LOGGER.info("Dry run; exiting...")
         return
-    basic_config(obj=LOGGER)
-    LOGGER.info(
-        "Running version %s with settings:\n%s...", __version__, pretty_repr(settings)
-    )
     uv_publish(
         username=settings.username,
         password=settings.password,
