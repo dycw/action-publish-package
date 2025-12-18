@@ -38,6 +38,10 @@ runs:
       with:
         python-version: 3.13
 
+    - name: Install 'dycw-uv-publish'
+      run: uv tool install --reinstall dycw-uv-publish
+      shell: bash
+
     - name: Run 'uv-publish'
       env:
         APP_TOKEN: ${{ inputs.token }}
@@ -46,5 +50,5 @@ runs:
         APP_PUBLISH_URL: ${{ inputs.publish-url }}
         APP_TRUSTED_PUBLISHING: ${{ inputs.trusted-publishing }}
         APP_NATIVE_TLS: ${{ inputs.native-tls }}
-      run: uv run --with=dycw-uv-publish --reinstall uv-publish
+      run: uv tool run --from dycw-uv-publish --isolated uv-publish
       shell: bash
