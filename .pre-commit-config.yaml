@@ -29,21 +29,21 @@ repos:
           - --github--push--publish
           - --github--push--publish--trusted-publishing
           - --github--push--tag
-          - --github--push--tag--major-minor
-          - --github--push--tag--major
           - --github--push--tag--latest
+          - --github--push--tag--major
+          - --github--push--tag--major-minor
           - --package-name=dycw-uv-publish
           - --pre-commit--prettier
           - --pre-commit--ruff
           - --pre-commit--taplo
           - --pre-commit--uv
           - --pyproject
-          - --python-package-name=uv_publish
-          - --python-version=3.13
           - --pyright
           - --pyright--include=src
           - --pytest
           - --pytest--test-paths=src/tests
+          - --python-package-name=uv_publish
+          - --python-version=3.13
           - --readme
           - --repo-name=action-uv-publish
           - --ruff
