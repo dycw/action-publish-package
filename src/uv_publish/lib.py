@@ -16,7 +16,7 @@ if TYPE_CHECKING:
 def uv_publish(
     *,
     username: str | None = SETTINGS.username,
-    password: Secret | None = SETTINGS.password,
+    password: Secret[str] | None = SETTINGS.password,
     publish_url: str | None = SETTINGS.publish_url,
     trusted_publishing: bool = SETTINGS.trusted_publishing,
     native_tls: bool = SETTINGS.native_tls,
@@ -43,7 +43,7 @@ Running version %s with settings:
             "uv",
             "publish",
             *([] if username is None else ["--username", username]),
-            *([] if password is None else ["--password", password.get_secret_value()]),
+            *([] if password is None else ["--password", password]),
             *([] if publish_url is None else ["--publish-url", publish_url]),
             *(["--trusted-publishing", "always"] if trusted_publishing else []),
             *(["--native-tls"] if native_tls else []),
@@ -51,9 +51,11 @@ Running version %s with settings:
         )
 
 
-def _log_run(*cmds: str) -> None:
-    LOGGER.info("Running '%s'...", " ".join(cmds))
-    _ = check_call(cmds, text=True)
+def _log_run(*cmds: str | Secret[str]) -> None:
+    LOGGER.info("Running '%s'...", " ".join(map(str, cmds)))
+    _ = check_call(
+        [c if isinstance(c, str) else c.get_secret_value() for c in cmds], text=True
+    )
 
 
 __all__ = ["uv_publish"]
