@@ -41,11 +41,11 @@ runs:
       with:
         python-version: 3.13
 
-    - name: Install 'dycw-uv-publish'
-      run: uv tool install --reinstall dycw-uv-publish
+    - name: Install 'dycw-actions'
+      run: uv tool install --reinstall dycw-actions
       shell: bash
 
-    - name: Run 'uv-publish'
+    - name: Run 'action publish'
       env:
         TOKEN: ${{ inputs.token }}
         USERNAME: ${{ inputs.username }}
@@ -54,5 +54,5 @@ runs:
         TRUSTED_PUBLISHING: ${{ inputs.trusted-publishing }}
         NATIVE_TLS: ${{ inputs.native-tls }}
         DRY_RUN: ${{ inputs.dry-run }}
-      run: uv tool run --from dycw-uv-publish --isolated uv-publish
+      run: uv tool run --from dycw-actions --isolated action publish
       shell: bash
