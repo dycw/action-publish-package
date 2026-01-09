@@ -1,15 +1,13 @@
 repos:
   - repo: https://github.com/dycw/actions
-    rev: 0.6.3
+    rev: 0.8.14
     hooks:
       - id: conformalize-repo
         args:
+          - --ci--pull-request--pre-commit
+          - --ci--push--tag
+          - --ci--push--tag--all
           - --description=Build and publish the package
-          - --github--pull-request--pre-commit
-          - --github--push--tag
-          - --github--push--tag--latest
-          - --github--push--tag--major
-          - --github--push--tag--major-minor
           - --pre-commit--prettier
           - --pre-commit--taplo
           - --readme
