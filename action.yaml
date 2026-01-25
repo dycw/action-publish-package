@@ -41,12 +41,32 @@ runs:
       with:
         github-token: ${{inputs.token-github}}
 
-    - name: Run 'action publish-package'
-      env:
-        USERNAME: ${{inputs.username}}
-        PASSWORD: ${{inputs.password}}
-        PUBLISH_URL: ${{inputs.publish-url}}
-        TRUSTED_PUBLISHING: ${{inputs.trusted-publishing}}
-        NATIVE_TLS: ${{inputs.native-tls}}
-      run: uv tool run --from dycw-actions[cli]@latest --isolated --resolution highest --prerelease disallow --managed-python cli publish-package
+    - name: Run 'publish-package'
+      run: |
+        set -euo pipefail
+        args=(uv tool run --from dycw-actions[cli]@latest --isolated --resolution highest --prerelease disallow --managed-python cli publish-package)
+        username="${{inputs.username}}"
+        if [[ "${username,,}" =~ ^(true|1|yes|on|t|y)$ ]]; then
+          args+=(--username "${username}")
+        fi
+        password="${{inputs.password}}"
+        if [[ "${password,,}" =~ ^(true|1|yes|on|t|y)$ ]]; then
+          args+=(--password "${password}")
+        fi
+        publish_url="${{inputs.publish-url}}"
+        if [[ "${publish_url,,}" =~ ^(true|1|yes|on|t|y)$ ]]; then
+          args+=(--publish-url "${publish_url}")
+        fi
+        trusted_publishing="${{inputs.trusted-publishing}}"
+        if [[ "${trusted_publishing,,}" =~ ^(true|1|yes|on|t|y)$ ]]; then
+          args+=(--trusted-publishing)
+        fi
+        native_tls="${{inputs.native-tls}}"
+        if [[ "${native_tls,,}" =~ ^(true|1|yes|on|t|y)$ ]]; then
+          args+=(--native-tls)
+        fi
+        echo "[$(date +'%Y-%m-%d %H:%M:%S')] Running:"
+        printf '%q ' "${args[@]}"
+        echo
+        "${args[@]}"
       shell: bash
