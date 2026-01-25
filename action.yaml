@@ -23,10 +23,10 @@ inputs:
     default:
   trusted-publishing:
     description: Configure trusted publishing
-    default: false
+    default:
   native-tls:
     description: Whether to load TLS certificates from the platform's native certificate store
-    default: false
+    default:
 
 runs:
   using: composite
@@ -42,22 +42,23 @@ runs:
         github-token: ${{inputs.token-github}}
 
     - name: Run 'publish-package'
-      run: set -euo pipefail
+      run: |
+        set -euo pipefail
         args=(uv tool run --from dycw-actions[cli]@latest --isolated --resolution highest --prerelease disallow --managed-python cli publish-package)
         if [ -n "${{inputs.username}}" ]; then
-        args+=(--username "${{inputs.username}}")
+          args+=(--username "${{inputs.username}}")
         fi
         if [ -n "${{inputs.password}}" ]; then
-        args+=(--password "${{inputs.password}}")
+          args+=(--password "${{inputs.password}}")
         fi
         if [ -n "${{inputs.publish-url}}" ]; then
-        args+=(--publish-url "${{inputs.publish-url}}")
+          args+=(--publish-url "${{inputs.publish-url}}")
         fi
         if [ -n "${{inputs.trusted-publishing}}" ]; then
-        args+=(--trusted-publishing)
+          args+=(--trusted-publishing)
         fi
         if [ -n "${{inputs.native-tls}}" ]; then
-        args+=(--native-tls)
+          args+=(--native-tls)
         fi
         echo "[$(date +'%Y-%m-%d %H:%M:%S')] Running:"
         printf '%q ' "${args[@]}"
