@@ -59,11 +59,11 @@ runs:
           args+=(--publish-url "${publish_url}")
         fi
         trusted_publishing="${{inputs.trusted-publishing}}"
-        if [[ "${trusted_publishing,,}" =~ ^(true|1|yes|on|t|y)$ ]]; then
+        if [[ "${trusted_publishing}" =~ ^[Tt][Rr][Uu][Ee]$ ]]; then
           args+=(--trusted-publishing)
         fi
         native_tls="${{inputs.native-tls}}"
-        if [[ "${native_tls,,}" =~ ^(true|1|yes|on|t|y)$ ]]; then
+        if [[ "${native_tls}" =~ ^[Tt][Rr][Uu][Ee]$ ]]; then
           args+=(--native-tls)
         fi
         echo "[$(date +'%Y-%m-%d %H:%M:%S')] Running:"
