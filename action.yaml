@@ -45,7 +45,7 @@ runs:
     - name: Run 'publish-package'
       run: |
         set -euo pipefail
-        args=(uv tool run --from dycw-actions[cli]@latest --isolated --resolution highest --prerelease disallow --managed-python cli publish-package)
+        args=(uv tool run --from dycw-actions[cli]@latest --isolated --resolution highest --prerelease disallow --managed-python publish-package)
         username="${{inputs.username}}"
         if [[ -n "${username}" ]]; then
           args+=(--username "${username}")
