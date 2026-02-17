@@ -8,7 +8,7 @@ repos:
           - --ci-tag-all
           - --description=Build and publish the package
           - --prettier
-          - --repo-name=action-publish
+          - --repo-name=action-publish-package
           - --toml
         priority: 10
       - id: check-versions-consistent
@@ -31,7 +31,7 @@ repos:
         priority: 10
       - id: setup-readme
         args:
-          - --repo-name=action-publish
+          - --repo-name=action-publish-package
           - --description=Build and publish the package
         priority: 20
       - id: update-ci-action-versions

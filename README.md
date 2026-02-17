@@ -1,3 +1,3 @@
-# `action-publish`
+# `action-publish-package`
 
 Build and publish the package
